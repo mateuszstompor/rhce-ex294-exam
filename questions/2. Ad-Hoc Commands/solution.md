@@ -1,6 +1,6 @@
 # 2. Ad-Hoc Commands - Solution
 Here is how the script might look like
-```
+```bash
 #!/usr/bin/bash
 
 # Create the directory for ssh keys
@@ -18,8 +18,10 @@ do
 done
 # Share public key with rest of the nodes, inventory is taken from the previous exercise
 sudo ansible all -m authorized_key -a "user=automation key={{ lookup('file', '/home/automation/.ssh/id_rsa.pub') }}"
+# Allow passwordless sudo
+sudo ansible all -m copy -a "content='automation ALL=(ALL) NOPASSWD:ALL' dest=/etc/sudoers.d/automation"
 ```
 Place it at `/home/automation/plays/adhoc`, don't forget to make it executeable
-```
+```bash
 chmod /home/automation/plays/adhoc 755
 ```
