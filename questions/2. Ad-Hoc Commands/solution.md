@@ -23,5 +23,5 @@ sudo ansible all -m copy -a "content='automation ALL=(ALL) NOPASSWD:ALL' dest=/e
 ```
 Place it at `/home/automation/plays/adhoc`, don't forget to make it executeable
 ```bash
-chmod /home/automation/plays/adhoc 755
+chmod 755 /home/automation/plays/adhoc
 ```
