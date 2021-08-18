@@ -48,3 +48,10 @@ roles_path = ~/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles:/home/
 [privilege_escalation]
 become = false
 ```
+Save it to `/home/automation/plays/ansible.cfg`
+
+### General thoughts
+Ensure that you have proper ownership, to restore it call
+```
+chown -R automation:automation /home/automation
+```
