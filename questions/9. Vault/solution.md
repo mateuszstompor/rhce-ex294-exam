@@ -20,17 +20,12 @@ Create yml that is going to hold db-related vars
 ```bash
 echo "db_password: devops" > /home/automation/plays/vars/database_users.yml
 ```
-Encrypt db-related vars file, pass `dbs-are-awesome` twice 
+Encrypt db-related vars file
 ```bash
-[automation@controller plays]$ ansible-vault encrypt /home/automation/plays/vars/database_users.yml 
-New Vault password: 
-Confirm New Vault password: 
-Encryption successful
+ansible-vault encrypt /home/automation/plays/vars/database_users.yml --vault-id @./secrets/database_users_password
 ```
-Encrypt users-related vars file, pass `eureka` twice 
+
+Encrypt users-related vars file
 ```bash
-[automation@controller plays]$ ansible-vault encrypt /home/automation/plays/vars/regular_users.yml --vault-id users@prompt
-New vault password (users): 
-Confirm new vault password (users): 
-Encryption successful
+ansible-vault encrypt /home/automation/plays/vars/regular_users.yml --vault-id users@./secrets/regular_users_password
 ```
