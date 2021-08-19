@@ -8,7 +8,7 @@ mkdir -p /home/automation/plays/group_vars/{proxy,database,webservers}
 
 2. Populate yml for `proxy` group
 ```bash
-echo "Welcome to HAProxy server" > /home/automation/plays/group_vars/proxy/motd.yml
+echo "motd: Welcome to HAProxy server" > /home/automation/plays/group_vars/proxy/motd.yml
 ```
 
 3. Populate yml for `database` group
@@ -18,7 +18,7 @@ echo "motd: Welcome to MySQL database" > /home/automation/plays/group_vars/datab
 
 4. Populate yml for `webservers` group
 ```bash
-echo "Welcome to Apache server" > /home/automation/plays/group_vars/webservers/motd.yml
+echo "motd: Welcome to Apache server" > /home/automation/plays/group_vars/webservers/motd.yml
 ```
 
 5. Finally, Create the playbook
