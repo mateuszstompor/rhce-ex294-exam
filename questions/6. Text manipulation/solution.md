@@ -15,20 +15,29 @@ The playbook might look as follows:
       regexp: '^PermitRootLogin.*'
       path: "{{ config_path }}"
       line: PermitRootLogin no
+    notify: Restart the service
   - name: Disallow X11 forwarding
     lineinfile:
       regexp: '^X11Forwarding.*'
       path: "{{ config_path }}"
       line: X11Forwarding no
+    notify: Restart the service
   - name: Set banner
     lineinfile:
       regexp: '^Banner.*'
       line: Banner /etc/motd
       path: "{{ config_path }}"
+    notify: Restart the service
   - name: Set max auth tries
     lineinfile:
       regexp: '^MaxAuthTries.*'
       line: MaxAuthTries 3
-      path: "{{ config_path }}" 
+      path: "{{ config_path }}"
+    notify: Restart the service
+  handlers:
+  - name: Restart the service
+    service:
+      name: sshd
+      state: restarted
 ...
 ```
