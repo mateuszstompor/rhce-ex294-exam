@@ -10,12 +10,6 @@ The playbook might look as follows:
   vars:
     config_path: /etc/ssh/sshd_config
   tasks: 
-  - name: Disallow root login
-    lineinfile:
-      regexp: '^PermitRootLogin.*'
-      path: "{{ config_path }}"
-      line: PermitRootLogin no
-    notify: Restart the service
   - name: Disallow X11 forwarding
     lineinfile:
       regexp: '^X11Forwarding.*'
