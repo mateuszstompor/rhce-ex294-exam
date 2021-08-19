@@ -41,3 +41,8 @@ The playbook might look as follows:
       state: restarted
 ...
 ```
+
+To run it execute
+```bash
+ansible-playbook ssh_config.yml 
+```

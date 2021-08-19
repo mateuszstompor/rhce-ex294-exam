@@ -28,3 +28,8 @@ The playbook might look as follows:
       enabled: true 
 ...
 ```
+
+To run it execute
+```bash
+ansible-playbook yum.yml 
+```

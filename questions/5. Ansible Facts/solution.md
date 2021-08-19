@@ -20,6 +20,11 @@ The playbook might look as follows
       mode: 0644
 ...
 ```
+To run it execute
+```bash
+ansible-playbook ansible_facts.yml 
+```
+
 Call the command below to verify:
 ```bash
 ansible database -m setup | grep ansible_local -A 3

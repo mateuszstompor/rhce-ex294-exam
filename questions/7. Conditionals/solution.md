@@ -23,3 +23,8 @@ The playbook might look as follows:
       reload: true
 ...
 ```
+
+To run it execute
+```bash
+ansible-playbook system_control.yml 
+```
