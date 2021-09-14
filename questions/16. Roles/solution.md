@@ -1,15 +1,16 @@
 # 16. Roles - Solution
 
-1. Go to the `/home/automation/plays` folder and create a folder for roles
+1. Go to the `/home/automation/plays` and create a folder for roles
 ```
 mkdir roles
 ```
 If you configured ansible correctly while solving the first exercise role that you are going to create will be detected by playbook automatically 
+
 2. Change CWD to newly created directory and initate skeleton for the role
 ```
 ansible-galaxy role init apache
 ```
-3. Open role's folder and remove all folders different than `tasks` and `meta`.
+3. Remove all folders different than `tasks` or `meta`
 4. Edit `tasks/main.yml` to look as follows
 ```yml
 ---
