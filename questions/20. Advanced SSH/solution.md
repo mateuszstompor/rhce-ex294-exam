@@ -7,6 +7,8 @@ Your playbook might look as follows
   become: true
   vars:
     selinux_state: enforcing
+    selinux_ports:
+    - { ports: '20022', proto: 'tcp', setype: 'ssh_port_t', state: 'present' }
   tasks:
   - name: Install firewalld
     yum: 
@@ -21,15 +23,21 @@ Your playbook might look as follows
     firewalld:
       port: 20022/tcp
       state: enabled
+      permanent: true
+      immediate: true
   - name: Ensure that server listens on non-standard port
     lineinfile:
       line: Port 20022
       path: /etc/ssh/sshd_config
+  - name: Ensure that server listens on standard port
+    lineinfile:
+      line: Port 22
+      path: /etc/ssh/sshd_config
   roles:
   - role: rhel-system-roles.selinux
-    post_tasks:
-    - name: Reboot the systems
-      reboot:
+  post_tasks:
+  - name: Reboot the systems
+    reboot:
 ...
 ```
 
