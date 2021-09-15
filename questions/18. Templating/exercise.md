@@ -8,7 +8,7 @@ Create a new folder named `templates` at `/home/automation/plays` and prepare th
 <ip_address_host2> <short_name_host2> <fqdn_host2>
 [...]
 ```
-Files should be called `hosts.j2`
+Set the name to `hosts.j2`
 
 Create a playbook named `hosts.yml` that meets following requirements:
 * Is placed at `/home/automation/plays/roles`
