@@ -1,4 +1,4 @@
-18. Templating
+# 18. Templating
 
 Create a new folder named `templates` at `/home/automation/plays` and prepare there a template that is going to be used later to generete hosts file for each node from the inventory. General idea is described by the below scratch
 ```

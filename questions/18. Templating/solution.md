@@ -1,4 +1,4 @@
-18. Templating - Solution
+# 18. Templating - Solution
 
 The template might look as follows
 ```yml
