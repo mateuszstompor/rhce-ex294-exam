@@ -1,6 +1,6 @@
 # 21. Networking
 
-Create a playbook named `network.yml` at `/home/automation/plays` that configures eth2 interface on managed1.example.com and managed4.example.com
+Create a playbook named `network.yml` at `/home/automation/plays` that configures eth2 interface on **managed1.example.com** and **managed4.example.com**
 
 Meet following objectives:
 * It defines new connection named `Internal`
