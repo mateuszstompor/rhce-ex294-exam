@@ -4,19 +4,18 @@ The playbook might look as follows
 ```yml
 ---
 - name: Configure custom facts
-  hosts: database
+  hosts: proxy
   become: true
+  gather_facts: false
   tasks:
-  - name: Create facts directory
+  - name: Ensure directories hierarchy exists
     file:
       state: directory
-      mode: 0755
       path: /etc/ansible/facts.d
-    become: true
-  - name: Add custom fact
+  - name: Dump fact
     copy:
-      content: "[local]\nrole=mysql"
-      dest: /etc/ansible/facts.d/database.fact
+      content: "[application]\nname=haproxy\n"
+      dest: /etc/ansible/facts.d/environment.fact
       mode: 0644
 ...
 ```
