@@ -5,8 +5,8 @@ The script might look as below
 ```bash
 #!/usr/bin/bash
 PATH=/usr/share
-USAGE=`/usr/bin/du $PATH -s | /usr/bin/awk '{print $1}'`
-echo {\"$PATH\":\"$USAGE\"}
+SIZE=$(/usr/bin/du $PATH -s 2>/dev/null | /usr/bin/awk '{print $1}')
+echo {\"$PATH\": $SIZE}
 ```
 
 Playbook itself may be implemented as follows
@@ -15,25 +15,22 @@ Playbook itself may be implemented as follows
 ---
 - hosts: all
   become: true
+  gather_facts: false
   tasks:
-  - name: Ensure that parent folder exists
-    file:
-      path: /etc/ansible
+  - name: Create directory for the facts
+    file: 
+      state: directory
+      path: "{{ item }}"
       mode: 0755
       owner: root
       group: root
-      state: directory
-  - name: Ensure that the folder exists
-    file:
-      path: /etc/ansible/facts.d
-      state: directory
-      owner: root
-      group: root
-      mode: 0755
-  - name: Populate script to all hosts
-    copy: 
+    loop:
+    - /etc/ansible
+    - /etc/ansible/facts.d
+  - name: Copy dynamic facts file
+    copy:
       src: files/usage.fact
-      dest: /etc/ansible/facts.d
+      dest: /etc/ansible/facts.d/usage.fact
       mode: 0755
       owner: root
       group: root

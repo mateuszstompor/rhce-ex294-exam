@@ -7,7 +7,7 @@
     [...]
     "ansible_local": {
         "usage": {
-            "/usr/share": "11488"
+            "/usr/share": 11488
         }
     }
     [...]
