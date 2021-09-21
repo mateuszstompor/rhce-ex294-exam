@@ -4,27 +4,26 @@ The playbook might look as follows:
 
 ```yml
 ---
-- name: Manage kernel configuration
+- name: Configure sysctl parameters
   hosts: all
   vars:
-    minimal_memory: 1024
-  gather_facts: true
+    ram_mb: 1024
   tasks:
-  - name: Ensure that system meets requirements
-    when: ansible_facts.memtotal_mb < minimal_memory
+  - name: Ensure that server meets memory requirements
     fail:
-      msg: Server has less than required {{ minimal_memory }}MB of RAM
-  - name: Set kernel param
+      msg: Server should have at least {{ ram_mb }}MB of ram
+    when: ansible_memtotal_mb < ram_mb
+  - name: Configure swappiness
     become: true
     sysctl:
       name: vm.swappiness
       value: '10'
-      state: present
+      sysctl_set: true
       reload: true
 ...
 ```
 
-To run it execute
+To run the playbook go to `/home/automation/plays` and execute
 ```bash
 ansible-playbook system_control.yml 
 ```
