@@ -9,7 +9,7 @@ Create a playbook named `ssh.yml` that meets following requirements:
 * Is executed against `database` group
 * Uses system role selinux to enable enforcing mode and allow connection on port 20022
 * Reboots machines as the last task that playbook executes
-
+* Ensure that during playbook execution at least one server is available, configure it to run sequentially
 Ensure that after reboot firewalld service is running, selinux mode set to `enforcing` and the machine can be accessed by both ports
 
 You can use below command to verify the result

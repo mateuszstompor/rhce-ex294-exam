@@ -5,6 +5,7 @@ Your playbook might look as follows
 ---
 - hosts: database
   become: true
+  serial: 1
   vars:
     selinux_state: enforcing
     selinux_ports:
