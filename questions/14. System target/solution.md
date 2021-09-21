@@ -3,14 +3,14 @@
 ```yml
 ---
 - hosts: all
+  gather_facts: false
   become: true
   tasks:
-  - name: Change default target
+  - name: Set the default target
     file:
-      state: link
       dest: /etc/systemd/system/default.target
       src: /usr/lib/systemd/system/multi-user.target
-      force: true
+      state: link
 ...
 ```
 
