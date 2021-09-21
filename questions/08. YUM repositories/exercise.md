@@ -9,5 +9,3 @@
     * Sets description of the repo to `MySQL 5.7 Community Server`
     * Sets repo id to `mysql57-community`
     * Sets url of the repo to `http://repo.mysql.com/yum/mysql-5.7-community/el/6/$basearch/`
-    * Installs mysql server
-    * Start mysql server, ensure that it is going to be running after a reboot
