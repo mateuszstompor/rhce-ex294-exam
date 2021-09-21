@@ -1,25 +1,32 @@
-# 11. Periodic jobs - Solution
+# 12. Periodic jobs - Solution
 
 The playbook might look as follows
 ```yml
 ---
 - hosts: proxy
+  name: Setup periodic jobs
+  gather_facts: false
   become: true
   tasks:
-  - name: Schedule greetings
+  - name: Schedule vmstat execution
     at:
-      unique: true
-      count: 15
+      command: '/usr/bin/vmstat 2>/dev/null 1>/var/log/vmstat.log; chown automation:automation /var/log/vmstat.log'
+      count: 1
       units: minutes
-      command: "echo 'Greatings from {{ ansible_facts.fqdn }}' > /var/log/greetings; chown automation:automation /var/log/greetings;"
-  - name: Schedule periodic date dump
+      unique: true
+  - name: Schedule hourly job
     cron:
-      weekday: Mon-Fri
-      state: present
-      job: "date >> /var/log/time.log"
-      minute: '*/60'
-      user: root
+      name: Dump plugged devices
+      weekday: '1-5'
+      minute: '0'
+      hour: '*'
+      day: '*'
       month: '*'
-      name: Log time periodically
+      job: "echo ----- $(date \"+%m/%d/%y %H:%M\") >> /var/log/devices.log;lsblk >> /var/log/devices.log;chown root:root /var/log/devices.log"
 ...
+```
+
+Go to `/home/automation/plays` and execute
+```bash
+ansible-playbook periodic_jobs.yml
 ```
