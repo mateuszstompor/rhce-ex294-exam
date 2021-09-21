@@ -35,6 +35,10 @@ managed3.example.com
 [database]
 managed3.example.com
 managed4.example.com
+
+[public:children]
+webservers
+proxy
 ```
 Save it to `/home/automation/plays/inventory`
 
@@ -42,11 +46,14 @@ Save it to `/home/automation/plays/inventory`
 ```ini
 [defaults]
 inventory = ./inventory
-forks = 10
+forks = 8
+log_path = /var/log/ansible/execution.log
 roles_path = ~/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles:/home/automation/plays/roles
 
 [privilege_escalation]
 become = false
+become_ask_pass = false
+become_method = sudo
 ```
 Save it to `/home/automation/plays/ansible.cfg`
 
@@ -55,3 +62,4 @@ Ensure that you have proper ownership, to restore it call
 ```
 chown -R automation:automation /home/automation
 ```
+Do the same for `/var/log/ansible` directory
