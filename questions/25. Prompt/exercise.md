@@ -4,7 +4,7 @@ You were asked to write a playbook that creates account for new employees. The i
 
 To achieve that create a playbook named `prompt.yml` at `/home/automation/plays` that meets following requirements:
 * Asks for username of a new user
-* Asks for his password - ensure that it is hidden while the user is typing it
+* Asks for his password - ensure that it is hidden while the user is typing it. The user should type the password twice
 * Creates networking group
 * Allows the networking group to call `nmcli` tool with `sudo` without password. Ensure that nmcli is the ONLY tool that the group is allowed to execute with root privileges
 * Assigns the user to `networking` supplementary group
