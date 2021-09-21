@@ -1,6 +1,6 @@
 # 25. Prompt
 
-You were asked to create a playbook that creates account for new employees. The idea is to execute the playbook each time a new person joins the company. To ease the boarding process your playbook should ask the user for his username and password while executing. All the people that are going to execute the playbook are suppossed to be part of networking team. From time to time they will need to interact with nmcli tool but despite that they shouldn't have access to privileged commands.
+You were asked to write a playbook that creates account for new employees. The idea is to execute the playbook each time a new person joins the company. To ease the boarding process your playbook should ask the user for his username and password while executing. All the people that are going to execute the playbook are suppossed to be part of networking team. From time to time they will need to interact with nmcli tool but despite that they shouldn't have access to privileged commands.
 
 To achieve that create a playbook named `prompt.yml` at `/home/automation/plays` that meets following requirements:
 * Asks for username of a new user
