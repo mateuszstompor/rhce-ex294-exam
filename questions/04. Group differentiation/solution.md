@@ -27,6 +27,7 @@ echo "motd: Welcome to Apache server" > /home/automation/plays/group_vars/webser
 - name: Setup motd
   hosts: all
   become: true
+  gather_facts: false
   tasks:
   - name: Populate the file
     copy:
