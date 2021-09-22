@@ -16,12 +16,6 @@ The playbook might look as follows:
       path: "{{ config_path }}"
       line: X11Forwarding no
     notify: Restart the service
-  - name: Set banner
-    lineinfile:
-      regexp: '^Banner.*'
-      line: Banner /etc/motd
-      path: "{{ config_path }}"
-    notify: Restart the service
   - name: Set max auth tries
     lineinfile:
       regexp: '^MaxAuthTries.*'

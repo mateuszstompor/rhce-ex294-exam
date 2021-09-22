@@ -4,5 +4,4 @@
     * Is placed at `/home/automation/plays/ssh_config.yml`
     * Is run against all servers
     * Disables X11 forwarding
-    * Sets banner to `/etc/motd`
     * Sets maxminal number of auth tries to 3
