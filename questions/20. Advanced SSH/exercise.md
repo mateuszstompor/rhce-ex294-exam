@@ -6,7 +6,7 @@ Create a playbook named `ssh.yml` that meets following requirements:
 * Ensures that firewalld is installed and running on boot
 * Opens 20022 in firewall for incoming connections
 * Modifies sshd config to listen on both 22 and 20022
-* Is executed against `database` group
+* Is executed against `webservers` group
 * Uses system role selinux to enable enforcing mode and allow connection on port 20022
 * Reboots machines as the last task that playbook executes
 * Ensure that during playbook execution at least one server is available, configure it to run sequentially

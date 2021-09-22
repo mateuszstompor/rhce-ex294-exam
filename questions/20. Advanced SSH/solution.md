@@ -3,7 +3,7 @@
 Your playbook might look as follows
 ```yml
 ---
-- hosts: database
+- hosts: webservers
   become: true
   serial: 1
   vars:
