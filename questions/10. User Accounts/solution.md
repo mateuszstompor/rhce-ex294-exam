@@ -2,54 +2,32 @@
 
 The playbook might look as follows
 ```yml
----
-- name: Setup accounts
-  hosts: webservers
+- hosts: all
   become: true
+  gather_facts: false
   vars_files:
   - vars/users.yml
   - vars/regular_users.yml
   tasks:
-  - name: Create users for webserver group
+  - name: Create users for webservers
     user:
       name: "{{ item.username }}"
-      state: present
       uid: "{{ item.uid }}"
       groups: ['wheel']
-      password: "{{ user_password | password_hash('sha512') }}"
-      shell: /bin/bash
+      shell: /usr/bin/bash
+      password: "{{ user_password | password_hash('sha512', 'salt') }}"
     loop: "{{ users }}"
-    when: item.uid > 3000 
-  - name: Copy key
+    when: |
+      (item.uid >= 2000 and item.uid < 3000 and inventory_hostname in groups['webservers']) or
+      (item.uid >= 3000 and item.uid < 4000 and inventory_hostname in groups['database'])
+  - name: Upload key
     authorized_key:
-      key: "{{ lookup('file', '/home/automation/.ssh/id_rsa.pub') }}"
+      key: '{{ lookup("file", "/home/automation/.ssh/id_rsa.pub") }}'
       user: "{{ item.username }}"
     loop: "{{ users }}"
-    when: item.uid > 3000
-- name: Setup accounts
-  hosts: database
-  become: true
-  vars_files:
-  - vars/users.yml
-  - vars/regular_users.yml
-  tasks:
-  - name: Create users for database group
-    user:
-      name: "{{ item.username }}"
-      state: present
-      groups: ['wheel']
-      shell: /bin/bash
-      password: "{{ user_password | password_hash('sha512') }}"
-      uid: "{{ item.uid }}"
-    loop: "{{ users }}"
-    when: item.uid < 3000 and item.uid >= 2000
-  - name: Copy key
-    authorized_key:
-      key: "{{ lookup('file', '/home/automation/.ssh/id_rsa.pub') }}"
-      user: "{{ item.username }}"
-    loop: "{{ users }}"
-    when: 2000 <= item.uid < 3000
-...
+    when: |
+      (item.uid >= 2000 and item.uid < 3000 and inventory_hostname in groups['webservers']) or
+      (item.uid >= 3000 and item.uid < 4000 and inventory_hostname in groups['database'])
 ```
 
 Call the playbook like as it is presented below
