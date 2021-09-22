@@ -1,8 +1,8 @@
 # 3. Archiving
 
 * Create a playbook that meets following requirements:
-    * Populates file stored at `/backup/mysql/users.csv` with content `stephanie;max;john`
-    * A gzip archive containing `/backup/mysql/users.csv` is stored at `/backup/mysql/users_archive.gz`
-    * User `automation` should be owner of `/backup` and everything underneath 
+    * Creates a gzip archive containing `/etc` and stores it at `/backup/configuration.gz` on the managed hosts
     * Is placed at `/home/automation/plays/archive.yml`
-    * Runs against `database` host group 
+    * Runs against `all` host group 
+    * Retrieves archives from the managed nodes and stores them at `/backup/<hostname>-configuration.gz`
+    * User `automation` should be owner of `/backup` and everything underneath. Both on the managed hosts and the control node. Only owner and members of his group should be able to read and manage the archive. Anyone should be allowed to list contents of `/backup`.

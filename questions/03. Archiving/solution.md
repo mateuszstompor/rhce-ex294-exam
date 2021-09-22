@@ -3,30 +3,44 @@
 The playbook might look as follows:
 ```yml
 ---
-- hosts: database
-  remote_user: automation
+- name: Create directory for archives
+  hosts: localhost
+  gather_facts: false
+  become: true
   tasks:
-  - name: Restore ownership 
+  - name: Create folder for the archives
     file:
-      recurse: true
       path: /backup
       owner: automation
       group: automation
       state: directory
-    become: true
-  - name: Create directory for backups
+      mode: 0755
+- name: Archive config files
+  hosts: all
+  become: true
+  tasks:
+  - name: Create folder for the archive
     file:
-      path: /backup/mysql
+      path: /backup
+      owner: automation
+      group: automation
       state: directory
-  - name: Create the file
-    copy:
-      content: "stephanie;max;john"    
-      dest: /backup/mysql/users.csv
+      mode: 0755
   - name: Create the archive
     archive:
-      path: /backup/mysql/users.csv
-      dest: /backup/mysql/users_archive.gz
+      dest: /backup/configuration.gz
       format: gz
+      path: /etc
+      owner: automation
+      group: automation
+      mode: 0660
+  - name: Fetch the archive
+    fetch:
+      src: /backup/configuration.gz
+      dest: /backup/{{ ansible_hostname }}-configuration.gz                                         
+      owner: automation
+      group: automation
+      mode: 0660
 ...
 ```
 
