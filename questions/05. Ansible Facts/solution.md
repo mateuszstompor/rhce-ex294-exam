@@ -26,5 +26,5 @@ ansible-playbook ansible_facts.yml
 
 Call the command below to verify:
 ```bash
-ansible database -m setup | grep ansible_local -A 3
+ansible proxy -m setup | grep ansible_local -A 3
 ```
