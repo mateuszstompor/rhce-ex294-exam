@@ -20,7 +20,7 @@ network_connections:
   interface_name: eth2
   ip:
     address:
-    - 192.168.101.101/24
+    - 192.168.57.101/24
   state: up
 ```
 
@@ -32,7 +32,7 @@ network_connections:
   interface_name: eth2
   ip:
     address:
-    - 192.168.101.102/24
+    - 192.168.57.102/24
   state: up
 ```
 
