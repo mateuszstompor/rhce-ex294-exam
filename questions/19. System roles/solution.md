@@ -18,8 +18,16 @@ The playbook might look as follows
     - hostname: 2.pl.pool.ntp.org
       iburst: true
       pool: true
+      
+  pre_tasks:
+   - name: Install jmespath
+     pip:
+       name: jmespath
+       executable: pip3
+       
   roles:
     - rhel-system-roles.timesync
+    
   post_tasks:
   - name: Set the timezone
     timezone:
