@@ -8,6 +8,7 @@ Content present in the repository is inspierd by other people' sample exams, red
 * [Red Hat Training](https://www.redhat.com/en/services/training/rh294-red-hat-linux-automation-with-ansible)
 * [Ahmed Almasah's Udemy Course](https://www.udemy.com/course/red-hat-exams-rhce-ex294-ansible-automatiomation-ex407/)
 * [Blog post at lisenet.com](https://www.lisenet.com/2019/ansible-sample-exam-for-ex294/)
+* [RHCE EX294 Practice Questions](https://www.examskit.com/redhat/ex294/pdf)
 
 ## Infrastructure assumptions
 In order to perform the exercises plan of the infrastructure must be established.
